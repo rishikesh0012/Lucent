@@ -1,6 +1,6 @@
 #  Lucent
 
-ocused intelligence from your documents
+Focused intelligence from your documents
 
 A local-first Document AI system that lets you upload PDFs and chat with them using Retrieval-Augmented Generation (RAG).
 
