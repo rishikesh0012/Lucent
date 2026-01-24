@@ -1,147 +1,76 @@
-#  Lucent
+# Lucent — Local Document AI (RAG System)
 
-Focused intelligence from your documents
+Lucent is a **privacy-first, local Document AI system** that enables users to query PDF documents using **Retrieval-Augmented Generation (RAG)** without relying on cloud-based LLMs.
 
-A local-first Document AI system that lets you upload PDFs and chat with them using Retrieval-Augmented Generation (RAG).
+---
 
-Private • Local • Explainable • Fast
+## 🔍 Problem Statement
+Most document-based AI tools rely on cloud APIs, which raises concerns around:
+- Data privacy
+- Latency
+- Cost
+- Internet dependency
 
-## 📁 Project Structure
+Organizations handling sensitive documents require an **offline, secure, and low-latency solution** for document question answering.
 
-```text
-lucent/
-├── frontend/              # Next.js frontend (UI)
-├── backend/               # FastAPI backend (RAG pipeline)
-├── images/                # Screenshots & demo images
-└── README.md
+---
 
-frontend/
-├── app/
-│   ├── page.tsx           # Main chat interface (Lucent UI)
-│   ├── layout.tsx         # Global layout & metadata
-│   └── globals.css        # Global styles
-│
-├── components/
-│   ├── ChatInput.tsx      # Chat input field
-│   ├── Message.tsx        # Chat message renderer (Markdown + streaming)
-│   ├── UploadBox.tsx      # PDF upload component
-│   └── PromptCards.tsx    # Suggested prompt cards
-│
-├── lib/
-│   └── api.ts             # Backend API calls (streaming support)
-│
-├── package.json           # Frontend dependencies
-└── tsconfig.json
+## 💡 Solution
+Lucent solves this by implementing a **fully local RAG pipeline**:
+- PDFs are ingested and chunked locally
+- Semantic search is performed using vector embeddings
+- Relevant context is retrieved using FAISS
+- Answers are generated using a **locally hosted LLM (Mistral via Ollama)**
 
+No data leaves the system.
 
-backend/
-├── main.py                # FastAPI app & API routes
-├── rag.py                 # Retrieval-Augmented Generation logic
-├── ingest.py              # PDF ingestion & vector store creation
-├── requirements.txt       # Python dependencies
-│
-├── docs/                  # Uploaded PDF files
-└── vectorstore/           # FAISS vector index storage
+---
 
-What is Lucent?
+## 🏗️ System Architecture
+1. User uploads PDF documents  
+2. Text is extracted and chunked  
+3. Embeddings are generated and stored in FAISS  
+4. User query is embedded and matched semantically  
+5. Relevant chunks are passed to the LLM  
+6. Context-aware response is generated and returned via API  
 
-Lucent is a privacy-focused Document Question-Answering application that runs completely on your local machine.
+---
 
-Unlike cloud-based AI tools, Lucent:
-	•	Keeps your documents private
-	•	Uses Retrieval-Augmented Generation (RAG) to reduce hallucinations
-	•	Streams responses in real time
-	•	Answers questions using only your uploaded documents
+## 🧠 AI / ML Details
+- **Approach:** Retrieval-Augmented Generation (RAG)
+- **Embeddings:** Sentence embeddings
+- **Vector Store:** FAISS
+- **LLM:** Mistral (served locally via Ollama)
+- **Inference:** End-to-end local LLM inference pipeline
 
-Lucent is ideal for:
-	•	Research papers
-	•	Technical documentation
-	•	Resumes & reports
-	•	Learning modern RAG systems
+---
 
-⸻
+## 🛠️ Tech Stack
+- Python
+- FastAPI
+- FAISS
+- Ollama (Mistral)
+- REST APIs
 
- Features
-	•	📄 Upload PDF documents
-	•	💬 Chat with documents using natural language
-	•	🧠 RAG pipeline with FAISS vector search
-	•	⚡ Streaming responses (ChatGPT-style typing)
-	•	🧾 Markdown & code block rendering
-	•	🎨 Clean, minimalist UI
-	•	🔒 Fully local — no cloud APIs
+---
 
-⸻
+## 🚀 Features
+- Offline-first AI system
+- Privacy-preserving document querying
+- Low-latency semantic search
+- REST API-based architecture
+- Scalable to multiple documents
 
-How It Works (RAG Flow)
+---
 
-PDF Upload
-   ↓
-Text Extraction (PyPDF)
-   ↓
-Chunking + Embeddings (Ollama)
-   ↓
-FAISS Vector Store
-   ↓
-User Question
-   ↓
-Relevant Chunks Retrieved
-   ↓
-LLM Generates Grounded Answer (Streaming)
+## ▶️ How to Run
+```bash
+# Clone the repository
+git clone https://github.com/rishikesh0012/Lucent.git
+cd Lucent
 
-
-Lucent ensures responses are grounded in document content, not hallucinated.
-
-⸻
-
-Tech Stack
-
-Frontend
-	•	Next.js (App Router)
-	•	TypeScript
-	•	Tailwind CSS
-	•	React Markdown
-
-Backend
-	•	FastAPI
-	•	LangChain
-	•	FAISS
-	•	Ollama (Mistral)
-
-⸻
-
-⚙️ Prerequisites
-
-Install the following before running Lucent:
-	•	Node.js (v18+)
-	•	Python (3.10+ recommended)
-	•	Ollama
-
-Install Ollama: https://ollama.com
-Pull model - ollama pull mistral
-
-Backend Setup
-cd backend
+# Install dependencies
 pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-http://localhost:8000
-http://localhost:8000/docs
 
-Frontend Setup
-cd frontend
-npm install
-npm run dev
-http://localhost:3000
-
-How to Use
-	1.	Start Ollama
-	2.	Run the backend
-	3.	Run the frontend
-	4.	Upload a PDF using the UI
-	5.	Ask questions such as:
-	•	Summarize this document
-	•	Explain section 2
-	•	Provide examples mentioned in the PDF
-
-Responses stream live as they are generated.
-
-BY RISHIKESH K G
+# Start the FastAPI server
+uvicorn app.main:app --reload
