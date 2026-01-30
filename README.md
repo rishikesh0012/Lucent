@@ -4,7 +4,7 @@ Lucent is a **privacy-first, local Document AI system** that enables users to qu
 
 ---
 
-## 🔍 Problem Statement
+## Problem Statement
 Most document-based AI tools rely on cloud APIs, which raises concerns around:
 - Data privacy
 - Latency
@@ -15,7 +15,7 @@ Organizations handling sensitive documents require an **offline, secure, and low
 
 ---
 
-## 💡 Solution
+## Solution
 Lucent solves this by implementing a **fully local RAG pipeline**:
 - PDFs are ingested and chunked locally
 - Semantic search is performed using vector embeddings
@@ -26,7 +26,7 @@ No data leaves the system.
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 1. User uploads PDF documents  
 2. Text is extracted and chunked  
 3. Embeddings are generated and stored in FAISS  
@@ -36,7 +36,7 @@ No data leaves the system.
 
 ---
 
-## 🧠 AI / ML Details
+## AI / ML Details
 - **Approach:** Retrieval-Augmented Generation (RAG)
 - **Embeddings:** Sentence embeddings
 - **Vector Store:** FAISS
@@ -45,7 +45,7 @@ No data leaves the system.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 - Python
 - FastAPI
 - FAISS
@@ -54,7 +54,7 @@ No data leaves the system.
 
 ---
 
-## 🚀 Features
+## Features
 - Offline-first AI system
 - Privacy-preserving document querying
 - Low-latency semantic search
